@@ -1,0 +1,10 @@
+.head {
+  height: 100vh;
+}
+
+.centerItems {
+  display: flex;
+  /* flex-direction: column; */
+  justify-items: center;
+  align-items: center;
+}
