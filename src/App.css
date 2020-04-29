@@ -1,5 +1,11 @@
 .App {
   min-height: 100vh;
+  margin-top: 5%;
+  background-color: #ffffff;
+}
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .search-form {
@@ -14,4 +20,13 @@
   justify-content: center;
   flex-wrap: wrap;
   /* padding: 4rem; */
+}
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+}
+.title {
+  font-weight: bold;
 }

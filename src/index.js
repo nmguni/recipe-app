@@ -6,7 +6,8 @@ import * as serviceWorker from "./serviceWorker";
 import Header from "./components/head";
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Header />
+    {/* <App /> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

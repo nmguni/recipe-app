@@ -9,98 +9,134 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import HeaderImge from "../images/crackAnEgg.jpg";
-import SearchIcon from "@material-ui/icons/Search";
-import SearchAppBar from "./searchBar";
+import Card from "@material-ui/core/Card";
 
-const useStyles = makeStyles(theme => ({
+import PropTypes from "prop-types";
+import Hidden from "@material-ui/core/Hidden";
+import withWidth from "@material-ui/core/withWidth";
+
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     margin: "0px",
-    padding: "0px"
+    padding: "0px",
+  },
+  appBar: {
+    backgroundColor: "#fff",
+    color: "black",
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+  },
+  gridHeight: {
+    height: "100%",
+  },
+  nav: {
+    fontSize: "1rem",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: "rgba(0,0,0, 0.58)",
   },
   title: {
-    flexGrow: 1
-  }
+    fontWeight: "bold",
+    textTransform: "capitalize",
+    padding: "1rem",
+    fontSize: "4.5rem",
+    paddingBottom: "1.2rem",
+    color: "rgba(0,0,0, 0.78)",
+  },
+  subHeadText: {
+    color: "rgba(0,0,0, 0.50)",
+    padding: "1.2rem",
+  },
+  button: {
+    width: "30%",
+    fontWeight: "bold",
+    backgroundColor: "#508553",
+    padding: "1rem",
+    borderRadius: "2rem",
+    fontSize: ".9rem",
+    letterSpacing: ".2rem",
+    color: "#fff",
+    margin: "1rem",
+    "&:hover": {
+      backgroundColor: "#50855370",
+
+      boxShadow: "1px 1px 5px 1px #ccc",
+    },
+  },
+
+  media: {
+    height: "100%",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  },
+  search: {
+    color: "#fff",
+    textDecoration: "none",
+  },
 }));
 
-export default function Header() {
+function Header(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <Box className={headerStyles.head}>
-        <AppBar
-          style={{ backgroundColor: "#f4f4f4", color: "black" }}
-          position="static"
-          elevation={0}
-        >
+        <AppBar className={classes.appBar} position="static" elevation={0}>
           <Toolbar>
-            <Typography
-              style={{ fontWeight: "bold" }}
-              variant="h6"
-              className={classes.title}
-            >
-              Food
+            <Typography variant="h6" className={classes.nav}>
+              recipe app
             </Typography>
-            {/* <Button color="inherit">Login</Button> */}
           </Toolbar>
         </AppBar>
         {/* Grid-------- */}
 
-        <Grid style={{ height: "100%" }} container>
-          <Grid className={headerStyles.centerItems} item sx={12} md={5}>
+        <Grid className={classes.gridHeight} container>
+          <Grid
+            className={headerStyles.centerItems}
+            item
+            sx={12}
+            sm={12}
+            md={6}
+            lg={5}
+          >
             <div style={{ margin: "0 auto" }}>
-              <Typography
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "4.5rem",
-                  paddingBottom: "1.2rem",
-                  color: "#2c2c2c"
-                }}
-                variant="h1"
-              >
-                Your favirout <br /> food searching <br /> app
+              <Typography className={classes.title} variant="h1">
+                Your favorite <br /> food searching <br /> app
               </Typography>
-              <Typography
-                style={{ paddingBottom: "1.2rem", color: "#2c2c2c" }}
-                variant="h6"
-              >
+              <Typography variant="h6" className={classes.subHeadText}>
                 Choose your favourite meals now
               </Typography>
               <Button
-                style={{
-                  backgroundColor: "#508553",
-                  padding: "1rem",
-                  borderRadius: "2rem",
-                  fontWeight: "500",
-                  fontSize: ".8rem"
-                }}
-                variant="contained"
+                className={classes.button}
                 color="primary"
                 disableElevation
               >
-                Explore All
+                <a className={classes.search} href="head/#appbar">
+                  Search
+                </a>
               </Button>
             </div>
           </Grid>
-          <Grid item sx={12} md={7}>
-            <CardMedia
-              className={classes.media}
-              image={HeaderImge}
-              title="cook cracking an egg"
-              style={{
-                height: "100%",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                width: "100%"
-              }}
-            />
-          </Grid>
+          <Hidden only="sm">
+            <Grid item sx={12} sm={12} md={6} lg={7}>
+              <Card className={classes.media}>
+                <CardMedia
+                  className={classes.media}
+                  image={HeaderImge}
+                  title="cook cracking an egg"
+                />
+              </Card>
+            </Grid>
+          </Hidden>
         </Grid>
       </Box>
-      <SearchAppBar />
     </div>
   );
 }
+
+Header.propTypes = {
+  width: PropTypes.oneOf(["lg", "md", "sm", "xl", "xs"]).isRequired,
+};
+export default withWidth()(Header);
