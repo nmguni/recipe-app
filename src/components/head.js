@@ -113,7 +113,7 @@ function Header(props) {
                 color="primary"
                 disableElevation
               >
-                <a className={classes.search} href="head/#appbar">
+                <a className={classes.search} href="/#appbar">
                   Search
                 </a>
               </Button>
